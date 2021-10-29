@@ -1,0 +1,28 @@
+{
+  "name": "create-welbex-widget",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"webpack --mode=development --watch\" \"nodemon ./core/server.js\"",
+    "prod": "webpack --mode=production",
+    "build": "webpack --mode=development"
+  },
+  "keywords": [],
+  "author": "seo",
+  "license": "ISC",
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^6.3.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.5.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.4.3",
+    "nodemon": "^2.0.14",
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1",
+    "zip-webpack-plugin": "^4.0.1"
+  }
+}
