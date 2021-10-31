@@ -1,22 +1,38 @@
-define([ './apiCalls.js', './statesManager.js'], function ( apiCalls, statesManager) {
-    const { createLicence } = apiCalls
-    const { widgetId, accountId, widgetInfo, licenceStatus, widgetSettings } = statesManager
+define([/*'lib/components/base/modal',*/ './apiCalls.js', './statesManager.js'], function (/*Modal,*/ apiCalls, statesManager) {
+    const {createLicence} = apiCalls
+    const {widgetId, accountId, widgetInfo, licenceStatus, widgetSettings} = statesManager
 
     function renderContentInSettings(template) {
         const contentWrapper = document.querySelector('.widget-content-wrapper')
         contentWrapper.innerHTML = template
     }
 
-	function renderPaymentBlock(template) {
-		const paymentWrapper = document.querySelector('.payment')
-		paymentWrapper.innerHTML = template
-	}
+    function renderPaymentBlock(template) {
+        const paymentWrapper = document.querySelector('.payment')
+        paymentWrapper.innerHTML = template
+    }
 
-
+    // function renderModal(msg) {
+    //     new Modal({
+    //         class_name: 'modal-window',
+    //         init: function ($modal_body) {
+    //             $modal_body.trigger('modal:loaded').html(msg).trigger('modal:centrify').append('')
+    //         },
+    //         destroy: function () {},
+    //     })
+    // }
 
     function renderCommentOfferModal(message) {
-
+        // renderModal(
+        //     `
+        // 		<p>
+        // 			Оставьте отзыв на виджет ${widgetInfo().name} ${message}
+        // 		</p>
+        // 		<button class="button-input button-input_blue comment-offer">Оставить отзыв</button>
+        // 	`
+        // )
         const commentOfferBtn = document.querySelector('.comment-offer')
+
         async function onCommentOfferBtnClick() {
             document.querySelector('.modal-scroller').click()
 
@@ -30,6 +46,7 @@ define([ './apiCalls.js', './statesManager.js'], function ( apiCalls, statesMana
 
                 const widgetInfoBlock = document.querySelector('.widget-settings__additional-block')
                 const observer = new MutationObserver(giveLicence)
+
                 async function giveLicence() {
                     if (widgetInfoBlock.querySelector('.widget-additional-info__edit-review')) {
                         const endDateOfTestLicence = new Date(licenceStatus().data.date_end).getTime()
@@ -49,15 +66,14 @@ define([ './apiCalls.js', './statesManager.js'], function ( apiCalls, statesMana
                     observer.disconnect()
                 }
 
-                observer.observe(widgetInfoBlock, { childList: true })
+                observer.observe(widgetInfoBlock, {childList: true})
             }
 
             commentOfferBtn.removeEventListener('click', onCommentOfferBtnClick)
         }
-        commentOfferBtn.addEventListener('click', onCommentOfferBtnClick)
 
-        localStorage.setItem(`welbex_widget:${widgetId()}:firstCommentOffer`, 'true')
+        commentOfferBtn.addEventListener('click', onCommentOfferBtnClick)
     }
 
-    return { renderContentInSettings, renderModal, renderPaymentBlock, renderCommentOfferModal }
+    return {renderContentInSettings, renderModal, renderPaymentBlock, renderCommentOfferModal}
 })

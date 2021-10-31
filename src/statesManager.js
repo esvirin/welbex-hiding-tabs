@@ -3,9 +3,8 @@ define([], function () {
 
     function createState(name, initialValue) {
         let value = initialValue
-        const state = (setter) =>
-            setter ? (typeof setter === 'function' ? (value = setter(value)) : (value = setter)) : value
-        states[name] = state
+	    states[name] = (setter) =>
+	        setter ? (typeof setter === 'function' ? (value = setter(value)) : (value = setter)) : value
     }
 
     createState('widgetId', null)

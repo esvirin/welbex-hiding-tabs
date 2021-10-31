@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"webpack --mode=development --watch\" \"nodemon ./core/server.js\"",
+    "start": "concurrently \"webpack --mode=development --watch\" \"nodemon ./core/server.js\"",
     "prod": "webpack --mode=production",
-    "build": "webpack --mode=development",
+    "dev": "webpack --mode=development",
     "zip": "node core/assets/archivator.js"
   },
   "keywords": [],
