@@ -1,19 +1,22 @@
 define([], function () {
-    const states = {}
+	const states = {}
 
-    function createState(name, initialValue) {
-        let value = initialValue
-	    states[name] = (setter) =>
-	        setter ? (typeof setter === 'function' ? (value = setter(value)) : (value = setter)) : value
-    }
+	function createState(name, initialValue) {
+		let value = initialValue
+		const state = setter =>
+			setter
+				? typeof setter === 'function'
+					? (value = setter(value))
+					: (value = setter)
+				: value
+		states[name] = state
+	}
 
-    createState('widgetId', null)
-    createState('accountId', null)
-    createState('licenceStatus', { exist: false, expired: false, data: null })
-    createState('firstInit', true)
-    createState('installationInfo', null)
-    createState('widgetInfo', {})
-    createState('widgetSettings', {})
-    createState('widgetParams', null)
-    return states
+	createState('widgetId', null)
+	createState('accountId', null)
+	createState('licenceStatus', { exist: false, expired: false, data: null })
+	createState('firstInit', true)
+	createState('installationInfo', null)
+	createState('widgetInfo', {})
+	return states
 })
