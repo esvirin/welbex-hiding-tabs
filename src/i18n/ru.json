@@ -1,11 +1,16 @@
 {
-    "widget": {
-        "name": "Мой виджет",
-        "short_description": "Короткое описание виджета",
-        "description": "Полное описание виджета",
-        "tour_description": "Описание виджета"
-    },
-    "settings": {
-        "nothing": "Ничто"
-    }
+  "widget": {
+    "name": "Мой виджет",
+    "short_description": "Короткое описание виджета",
+    "description": "Полное описание виджета",
+    "tour_description": "Описание виджета"
+  },
+  "settings": {
+    "phoneNumber": "Телефон",
+    "name": "Ваше имя",
+    "email": "Электронная почта"
+  },
+  "advanced": {
+    "title": "Скрытие Вкладок"
+  }
 }
