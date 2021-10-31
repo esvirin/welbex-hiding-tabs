@@ -8,14 +8,14 @@ define(['./Components.js'], function (Components) {
 		},
 		buyingLicenceTemplate: (tariffs, currentTariffId) => {
 			const formatDate = new Intl.DateTimeFormat('ru-RU').format
-			const currentTariff = tariffs.find(tariff => tariff.id == currentTariffId)
+			const currentTariff = tariffs.find(tariff => parseInt(tariff.id) === parseInt(currentTariffId))
 			return `
 				<div class="payment__tariffs">
 					${tariffs
 						.map((tariff, index) => {
 							return `
 							<div id="payment__tariffs__item" data-index="${index}" class="payment__tariffs__item ${
-								tariff.id == currentTariffId && 'payment__tariffs__item--current'
+								parseInt(tariff.id) === parseInt(currentTariffId) && 'payment__tariffs__item--current'
 							}" data-id="${tariff.id}">
 								<div class="payment__tariffs__item__title">${tariff.title}</div>
 								<div class="payment__tariffs__item__description">${tariff.description}</div>
